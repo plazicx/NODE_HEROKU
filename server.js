@@ -30,6 +30,7 @@ let output = '';
 var https_address='';
 var QRurl;
 var server_is_connected=false;
+var master_peer = null;
 
 io.on('connection', function (socket) {  // upon connection we start listening - on that socket! (player) - for his potential disconnection
 
@@ -42,12 +43,23 @@ io.on('connection', function (socket) {  // upon connection we start listening -
     })
     
     console.log("SOMEONE CONNECTED TO SERVER ! ")
+
+    socket.on('master_peer', function(tmp) {
+        console.log('received master peer id ',tmp)
+        master_peer = tmp;
+    })
+
+    socket.on('tell_me_master_peer',function(tmp) {
+        io.emit('master_peer_from_server', master_peer);
+    })
+
+    
     
 }); /// on connection ends here!!!!!!!
 
 app.use('/assets', express.static('assets'));
   
-app.get('/', function(req, res){
+app.get('/server', function(req, res){
         
     res.sendFile('./assets/index_Server.html', { root: '.' });
         
