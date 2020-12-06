@@ -53,12 +53,19 @@ io.on('connection', function (socket) {  // upon connection we start listening -
         io.emit('master_peer_from_server', master_peer);
     })
 
-    
+
     
 }); /// on connection ends here!!!!!!!
 
 app.use('/assets', express.static('assets'));
   
+
+app.get('/', function(req, res){
+        
+    res.sendFile('./assets/index_Server.html', { root: '.' });
+        
+});      // told server to serve index.html as our first root page
+
 app.get('/server', function(req, res){
         
     res.sendFile('./assets/index_Server.html', { root: '.' });
