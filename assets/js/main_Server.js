@@ -35,7 +35,7 @@ var peer = new Peer(null, {
           case 'move':
               
               console.log('received greeting from ', data[1].message);
-              this.send(['message',{message:'fak ju too'}]);
+              this.send(['message',{message:'hello to you too!'}]);
               
       }
   });

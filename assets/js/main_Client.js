@@ -36,7 +36,7 @@ socket.on('master_peer_from_server',function (tmp){
               
             });
 
-            peer_connection.send(['move', {message:'fak ju'} ]);
+            peer_connection.send(['move', {message:'hello!'} ]);
             
         });
         
