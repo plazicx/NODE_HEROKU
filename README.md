@@ -40,6 +40,11 @@ heroku stop web.1
 
 
 
+to connect as client passing specific server id do 
+
+http://localhost:5000/client?ser_id=whateva
+
+that will be the QR code which server will generate!!!!  using its own socket_io as ser_id so that client that is connecting to that server knows how to identify it! This is quite simple!
 
 
 

@@ -1,4 +1,7 @@
 var socket=io();
+socket.on('connect', () => {
+  console.log('my socket ',socket.id)
+});
 
 var peer = new Peer(null, {
     debug: 0,

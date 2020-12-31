@@ -39,8 +39,11 @@ io.on('connection', function (socket) {  // upon connection we start listening -
     Object.keys(players).forEach(function (id) {
         if (players[id].playerId === socket.id ){
             already_in_the_list = true;
-        }
+        } 
     })
+    if (!already_in_the_list) {
+        players[socket.id] = {playerId:socket.id,};
+    }
     
     console.log("SOMEONE CONNECTED TO SERVER ! ")
 
@@ -74,6 +77,14 @@ app.get('/server', function(req, res){
 
 app.get('/client', function(req, res){
         
+    var server_id = req.query.ser_id;
+    console.log('server_is :',server_id);
+    if (players[server_id]) {
+        console.log('this server indeed exists');
+    } else {
+        console.log('sorry no such server!');
+    }
+
     res.sendFile('./assets/index_Client.html', { root: '.' });
         
 });      // told server to serve index.html as our first root page
