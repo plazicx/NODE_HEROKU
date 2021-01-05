@@ -81,11 +81,13 @@ app.get('/client', function(req, res){
     console.log('server_is :',server_id);
     if (players[server_id]) {
         console.log('this server indeed exists');
+        res.sendFile('./assets/index_Client.html', { root: '.' });
     } else {
         console.log('sorry no such server!');
+        res.send('server' + server_id+' does not exist');
     }
 
-    res.sendFile('./assets/index_Client.html', { root: '.' });
+    //res.sendFile('./assets/index_Client.html', { root: '.' });
         
 });      // told server to serve index.html as our first root page
 
